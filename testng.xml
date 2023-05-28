@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="Reporting.ExtentTestListener" />
+    </listeners>
+    <test verbose="2" preserve-order="true" name="JPTask">
+        <classes>
+            <class name="Tests.Scenarios.ValidateViaGoogleTest">
+            </class>
+            <class name="Tests.Scenarios.ValidationViaAPITest">
+            </class>
+            <class name="Tests.Scenarios.ValidationViaYahooTest">
+            </class>
+        </classes>
+    </test>
+</suite>
