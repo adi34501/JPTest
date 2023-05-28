@@ -20,6 +20,16 @@ public class CommonAction {
         ele.click();
     }
 
+    public static String getText(By ele, WebDriver driver){
+        CommonAction.waitForElement(driver,ele);
+        return driver.findElement(ele).getText();
+    }
+
+    public static String getText(WebElement ele, WebDriver driver){
+        CommonAction.waitForElement(driver,ele);
+        return ele.getText();
+    }
+
 
     public static Boolean ElementIsDisplayed(WebElement ele){
         return ele.isDisplayed();

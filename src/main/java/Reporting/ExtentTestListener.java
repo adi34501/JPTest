@@ -9,11 +9,15 @@ import org.testng.ITestResult;
 
 public class ExtentTestListener implements ITestListener {
         private ExtentReports extent = ExtentReportManager.getInstance();
-        private ExtentTest test;
+        private static ExtentTest test;
+
 
         @Override
         public void onTestStart(ITestResult result) {
-            test = extent.createTest(result.getMethod().getMethodName());
+            String className = result.getMethod().getRealClass().getSimpleName();
+            String methodName = result.getMethod().getMethodName();
+            String description = result.getMethod().getDescription();
+            test = extent.createTest(className + " - " + methodName, description);
         }
 
         @Override
@@ -30,6 +34,7 @@ public class ExtentTestListener implements ITestListener {
         public void onFinish(ITestContext context) {
             extent.flush();
         }
+
 
     }
 

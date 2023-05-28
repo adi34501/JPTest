@@ -27,11 +27,13 @@ public class GuardianFeedPage extends BaseClass {
     WebElement  manageCookies;
 
 
-    @FindBy (xpath = "//h3[@class='fc-item__title']//a[not(contains(@href,'live'))]")
+    @FindBy (xpath = "//a[@class='u-faux-block-link__overlay js-headline-text' and not(contains(@href,'live'))]")
     WebElement  article;
-    @FindBy (xpath = "//aside[@data-gu-name='info']//span[@class='dcr-u0h1qy']")
-    WebElement publishDate;
-    @FindBy (xpath = "//aside[@data-gu-name='info']//a[@rel='author']")
+
+    By publishDate = By.xpath("//address[@aria-label='Contributor info']/following-sibling::div");
+
+
+    @FindBy (xpath = "//address[@aria-label='Contributor info']//a")
     public WebElement author;
 
     public GuardianFeedPage(WebDriver driver){
@@ -43,7 +45,7 @@ public class GuardianFeedPage extends BaseClass {
         return firstArticle.getText();
     }
 
-    public String getPublishDate(){
+    public String getPublishDate() throws NullPointerException{
         CommonAction.switchFrame(driver,frame2,"sp_message_iframe_801669");
         CommonAction.click(manageCookies,driver);
         driver.switchTo().parentFrame();
@@ -51,8 +53,7 @@ public class GuardianFeedPage extends BaseClass {
         CommonAction.click(closeBtn,driver);
         driver.switchTo().parentFrame();
         article.click();
-        CommonAction.waitForElement(driver,publishDate);
-        String Date = publishDate.getText().substring(4,15);
+        String Date = CommonAction.getText(publishDate,driver).substring(4,15);
         return Date;
     }
 
@@ -64,8 +65,7 @@ public class GuardianFeedPage extends BaseClass {
         CommonAction.click(closeBtn,driver);
         driver.switchTo().parentFrame();
         article.click();
-        CommonAction.waitForElement(driver,author);
-        return author.getText();
+        return CommonAction.getText(author,driver);
     }
 
 

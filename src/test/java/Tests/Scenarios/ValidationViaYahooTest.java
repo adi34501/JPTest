@@ -23,7 +23,7 @@ public class ValidationViaYahooTest extends BaseClass {
 
     @Test(description = "Verifies that the correct page title is displayed.")
     public void verifyTitle() {
-        Assert.assertEquals("Not on the news Page of Guardian","News | The Guardian", driver.getTitle());
+        Assert.assertEquals(driver.getTitle(),"News | The Guardian","Not on the news Page of Guardian");
     }
 
     @Test(description = "Verifies that the article is fetched successfully.")
@@ -33,7 +33,7 @@ public class ValidationViaYahooTest extends BaseClass {
     }
 
     @Test(description = "Verifies that the search page is opened.")
-    public void openSearchPage() {
+    public void verifyOpenSearchPage() {
         new YahooSearchPage(driver).performSearch(articleText);
         Assert.assertTrue( driver.getCurrentUrl().contains("yahoo"),"Not on Yahoo Search Page");
     }

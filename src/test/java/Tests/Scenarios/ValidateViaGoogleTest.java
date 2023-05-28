@@ -51,7 +51,7 @@ public class ValidateViaGoogleTest extends BaseClass {
     }
 
     @Test(description = "Verifies that the search page opens after performing a search")
-    public void verifyOpeningSearchPage(){
+    public void verifyOpenSearchPage(){
         new GoogleSearchPage(driver).performSearch(ArticleText);
         Assert.assertTrue( driver.getCurrentUrl().contains("google.com/search"),"Not on Google Search Page");
     }
